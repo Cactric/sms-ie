@@ -35,20 +35,21 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
-import android.provider.Telephony
 import android.text.format.DateUtils.formatElapsedTime
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -127,7 +128,32 @@ class MainActivity : AppCompatActivity(), ConfirmWipeFragment.NoticeDialogListen
 
         // set up UI
         setContentView(R.layout.activity_main)
-        setSupportActionBar(findViewById(R.id.toolbar))
+        //setSupportActionBar(findViewById(R.id.toolbar))
+
+        val bottomNavigationView: BottomNavigationView = this.findViewById(R.id.mainNavBar)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView)
+        val navController = navHostFragment?.findNavController()
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.action_navbar_welcome -> {
+                    navController?.navigate(R.id.WelcomeFragment)
+                    true
+                }
+                R.id.action_navbar_import -> {
+                    navController?.navigate(R.id.ImportFragment)
+                    true
+                }
+                R.id.action_navbar_export -> {
+                    navController?.navigate(R.id.ExportFragment)
+                    true
+                }
+                R.id.action_navbar_wipe -> {
+                    navController?.navigate(R.id.WipeFragment)
+                    true
+                }
+                else -> false
+            }
+        }
 
         //actionBar?.setDisplayHomeAsUpEnabled(true)
 
