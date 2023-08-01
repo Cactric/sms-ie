@@ -63,7 +63,7 @@ class ImportFragment : Fragment() {
                 type =
                     if (Build.VERSION.SDK_INT < 29) "*/*" else "application/zip" //see https://github.com/tmo1/sms-ie/issues/3#issuecomment-900518890
             }
-            startActivityForResult(intent, IMPORT_MESSAGES)
+            requireActivity().startActivityForResult(intent, IMPORT_MESSAGES)
         } else {
             Toast.makeText(
                 requireContext(),
@@ -80,7 +80,7 @@ class ImportFragment : Fragment() {
                 type =
                     if (Build.VERSION.SDK_INT < 29) "*/*" else "application/json" //see https://github.com/tmo1/sms-ie/issues/3#issuecomment-900518890
             }
-            startActivityForResult(intent, IMPORT_CALL_LOG)
+            requireActivity().startActivityForResult(intent, IMPORT_CALL_LOG)
         } else {
             Toast.makeText(
                 this.requireContext(),
@@ -97,7 +97,7 @@ class ImportFragment : Fragment() {
                 type =
                     if (Build.VERSION.SDK_INT < 29) "*/*" else "application/json" //see https://github.com/tmo1/sms-ie/issues/3#issuecomment-900518890
             }
-            startActivityForResult(intent, IMPORT_CONTACTS)
+            requireActivity().startActivityForResult(intent, IMPORT_CONTACTS)
         } else {
             Toast.makeText(
                 this.requireContext(),
