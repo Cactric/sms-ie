@@ -22,6 +22,7 @@ package com.github.tmo1.sms_ie
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -65,7 +66,7 @@ class ExportFragment : Fragment() {
                 Manifest.permission.READ_CONTACTS
             ) == PackageManager.PERMISSION_GRANTED
         )*/
-        if (checkReadSMSContactsPermissions(this.requireContext())) {
+        if (checkReadSMSContactsPermissions(this.requireActivity())) {
             val date = getCurrentDateTime()
             val dateInString = date.toString("yyyy-MM-dd")
             val intent = Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
@@ -73,7 +74,8 @@ class ExportFragment : Fragment() {
                 type = "application/zip"
                 putExtra(Intent.EXTRA_TITLE, "messages-$dateInString.zip")
             }
-            startActivityForResult(intent, EXPORT_MESSAGES)
+            Log.d(LOG_TAG, "Starting file picker activity")
+            requireActivity().startActivityForResult(intent, EXPORT_MESSAGES)
         } else {
             Toast.makeText(
                 this.requireContext(),
@@ -93,7 +95,7 @@ class ExportFragment : Fragment() {
                 type = "application/json"
                 putExtra(Intent.EXTRA_TITLE, "calls-$dateInString.json")
             }
-            startActivityForResult(intent, EXPORT_CALL_LOG)
+            requireActivity().startActivityForResult(intent, EXPORT_CALL_LOG)
         } else {
             Toast.makeText(
                 this.requireContext(),
@@ -112,7 +114,7 @@ class ExportFragment : Fragment() {
                 type = "application/json"
                 putExtra(Intent.EXTRA_TITLE, "contacts-$dateInString.json")
             }
-            startActivityForResult(intent, EXPORT_CONTACTS)
+            requireActivity().startActivityForResult(intent, EXPORT_CONTACTS)
         } else {
             Toast.makeText(
                 this.requireContext(),
