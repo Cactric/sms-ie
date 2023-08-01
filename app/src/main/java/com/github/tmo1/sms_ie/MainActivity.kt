@@ -28,6 +28,7 @@ import android.app.Activity
 import android.app.Dialog
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -39,6 +40,7 @@ import android.text.format.DateUtils.formatElapsedTime
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View.VISIBLE
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
@@ -182,7 +184,9 @@ class MainActivity : AppCompatActivity(), ConfirmWipeFragment.NoticeDialogListen
     ) {
         super.onActivityResult(requestCode, resultCode, resultData)
         var total: MessageTotal
+
         val statusReportText: TextView = findViewById(R.id.status_report)
+        statusReportText.visibility = VISIBLE
         val progressBar: ProgressBar = findViewById(R.id.progressBar)
         val startTime = System.nanoTime()
         // Throughout this function, we pass 'this@MainActivity' to the import functions, since they
