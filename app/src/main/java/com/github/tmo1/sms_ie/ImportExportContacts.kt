@@ -86,7 +86,7 @@ private suspend fun contactsToJSON(
         )
     contactsCursor?.use { it ->
         if (it.moveToFirst()) {
-            val totalContacts = it.count
+            val totalContacts: Int = it.count
             initProgressBar(progressBar, it)
             val contactsIdIndex = it.getColumnIndexOrThrow(BaseColumns._ID)
             do {

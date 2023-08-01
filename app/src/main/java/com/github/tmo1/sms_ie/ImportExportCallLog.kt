@@ -88,7 +88,7 @@ private suspend fun callLogToJSON(
         )
     callCursor?.use { it ->
         if (it.moveToFirst()) {
-            val totalCalls = it.count
+            val totalCalls: Int = it.count
             initProgressBar(progressBar, it)
             val addressIndex = it.getColumnIndexOrThrow(CallLog.Calls.NUMBER)
             do {

@@ -119,7 +119,7 @@ private suspend fun smsToJSON(
     smsCursor?.use { it ->
         if (it.moveToFirst()) {
             initProgressBar(progressBar, it)
-            val totalSms = it.count
+            val totalSms: Int = it.count
             val addressIndex = it.getColumnIndexOrThrow(Telephony.Sms.ADDRESS)
             do {
                 val smsMessage = JSONObject()
@@ -161,7 +161,7 @@ private suspend fun mmsToJSON(
         appContext.contentResolver.query(Telephony.Mms.CONTENT_URI, null, null, null, null)
     mmsCursor?.use { it ->
         if (it.moveToFirst()) {
-            val totalMms = it.count
+            val totalMms: Int = it.count
             initProgressBar(progressBar, it)
             val msgIdIndex = it.getColumnIndexOrThrow("_id")
             // write MMS metadata
