@@ -19,9 +19,6 @@
   -->
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/action_navbar_welcome"
-        android:title="@string/menu_welcome"
-        android:icon="@drawable/baseline_home_24" />
     <item android:id="@+id/action_navbar_import"
         android:title="@string/menu_import"
         android:icon="@drawable/baseline_input_24" />

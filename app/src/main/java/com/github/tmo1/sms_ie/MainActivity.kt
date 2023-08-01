@@ -137,10 +137,6 @@ class MainActivity : AppCompatActivity(), ConfirmWipeFragment.NoticeDialogListen
         val navController = navHostFragment?.findNavController()
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.action_navbar_welcome -> {
-                    navController?.navigate(R.id.WelcomeFragment)
-                    true
-                }
                 R.id.action_navbar_import -> {
                     navController?.navigate(R.id.ImportFragment)
                     true
@@ -154,6 +150,18 @@ class MainActivity : AppCompatActivity(), ConfirmWipeFragment.NoticeDialogListen
                     true
                 }
                 else -> false
+            }
+        }
+        val currentFragment = navController?.currentDestination
+        when (currentFragment?.id) {
+            R.id.ImportFragment -> {
+                bottomNavigationView.selectedItemId = R.id.action_navbar_import
+            }
+            R.id.ExportFragment -> {
+                bottomNavigationView.selectedItemId = R.id.action_navbar_export
+            }
+            R.id.WipeFragment -> {
+                bottomNavigationView.selectedItemId = R.id.action_navbar_wipe
             }
         }
 

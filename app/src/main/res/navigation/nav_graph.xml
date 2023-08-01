@@ -22,14 +22,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@+id/WelcomeFragment">
+    app:startDestination="@+id/ExportFragment">
 
-    <fragment
-        android:id="@+id/WelcomeFragment"
-        android:name="com.github.tmo1.sms_ie.WelcomeFragment"
-        android:label="@string/menu_welcome"
-        tools:layout="@layout/fragment_welcome">
-    </fragment>
     <fragment
         android:id="@+id/ImportFragment"
         android:name="com.github.tmo1.sms_ie.ImportFragment"
